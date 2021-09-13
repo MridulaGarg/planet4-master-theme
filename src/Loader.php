@@ -99,9 +99,7 @@ final class Loader {
 			}
 
 			// Load `CampaignExporter` class on admin campaign listing page and campaign export only.
-			if ( 'campaign' === filter_input( INPUT_GET, 'post_type', FILTER_SANITIZE_STRING ) || 'export_data' === filter_input( INPUT_GET, 'action', FILTER_SANITIZE_STRING ) ) {
-				$this->default_services[] = CampaignExporter::class;
-			}
+			$this->default_services[] = CampaignExporter::class;
 
 			// Load `CampaignImporter` class on admin campaign import only.
 			// phpcs:disable
