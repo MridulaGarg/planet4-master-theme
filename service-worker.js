@@ -1,0 +1,55 @@
+const version = 0.05;
+
+const staticCacheName = version + 'staticfiles';
+
+// Cache needed files for offline page
+addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(staticCacheName)
+      .then(staticCache => {
+        return staticCache.addAll([
+          // './offline-page/offline.jpeg',
+          './offline-page/offline.css',
+          './images/gp-logo.svg',
+          './offline-page/offline.html',
+        ]);
+      })
+  );
+});
+
+// Delete old caches
+addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys()
+      .then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (cacheName !== staticCacheName) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      })
+      .then(() => {
+        return clients.claim();
+      })
+  );
+});
+
+// Show offline page if any fetch errors
+addEventListener('fetch', event => {
+  const { request } = event;
+  event.respondWith(
+    caches.match(request)
+      .then(responseFromCache => {
+        if (responseFromCache) {
+          return responseFromCache;
+        }
+        return fetch(request);
+      })
+      .catch(error => {
+        console.log(error);
+        return caches.match('./offline-page/offline.html');
+      })
+  )
+})
