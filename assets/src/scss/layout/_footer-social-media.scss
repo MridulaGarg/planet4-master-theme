@@ -1,74 +1,107 @@
-.footer-social-media {
-  _-- {
-    color: $grey-20;
-  }
-  font-size: $font-size-xl;
-  margin: auto;
-  text-align: center;
-  width: max-content;
-  margin-bottom: 32px;
-  padding: 0;
+.site-footer__social-media {
+  text-align: left;
+  margin-bottom: 24px;
 
-  .icon {
-    width: 2rem;
-    height: 2rem;
+  @include medium-and-up {
+    margin-bottom: 0;
   }
 
-  @include small-and-up {
-    font-size: $font-size-xxxl;
-  }
+  &-title {
+    display: none;
 
-  @supports (justify-content: space-between) {
-    & {
-      display: flex;
-      justify-content: space-between;
+    @include large-and-up {
+      margin-bottom: 24px;
+      display: block;
+      line-height: 1;
     }
   }
 
-  li {
-    display: inline-block;
-    font-size: $font-size-xl;
-
-    &:not(:last-child) {
-      margin-inline-end: 16px;
+  &-list {
+    _-- {
+      color: $white;
     }
-  }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 9px;
+    border-bottom: 1px solid white;
 
-  a {
-    --footer-social-media--link-- {
-      transition: color 100ms linear;
+    @supports (justify-content: center) {
+      & {
+        justify-content: center;
+      }
+    }
 
-      &:hover {
-        color: $white;
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 16px;
+    }
+
+    &--justify-space-between {
+      @supports (justify-content: space-between) {
+        & {
+          justify-content: space-between;
+        }
+      }
+    }
+
+    @include large-and-up {
+      border-bottom: none;
+      flex-wrap: nowrap;
+
+      @supports (justify-content: flex-start) {
+        & {
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    li {
+      display: inline-block;
+
+      &:not(:last-child) {
+        margin-inline-end: 16px;
+      }
+    }
+
+    a {
+      --footer--social-media--link-- {
+        transition: color 100ms linear;
+
+        &:hover {
+          color: $white;
+        }
       }
     }
   }
-}
 
-.site-footer--minimal .footer-social-media {
-  font-size: $font-size-xl;
-  margin: 0 auto $space-md auto;
-  text-align: center;
-  width: max-content;
+  &--minimal {
+    width: 100%;
 
-  @supports (justify-content: space-between) {
-    & {
-      display: flex;
-      justify-content: space-between;
+    .site-footer__social-media {
+      &-title {
+        display: none;
+      }
+
+      &-list {
+        border: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        @supports (justify-content: center) {
+          & {
+            justify-content: center;
+          }
+        }
+
+        .icon {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    @include medium-and-up {
+      margin-bottom: 24px;
     }
   }
-
-  li {
-    display: inline-block;
-    margin: 0 16px 0 0;
-  }
-
-  a {
-    transition: color 100ms linear;
-  }
-
-  .list-unstyled {
-    width: 200px;
-  }
 }
-

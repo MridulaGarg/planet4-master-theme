@@ -1,8 +1,8 @@
 <footer id="footer" class="site-footer site-footer--{{ nav_type }}">
-	<div class="container">
+	<div class="container site-footer__container">
 		{% include 'footer_social_media.twig' %}
 		{% if nav_type != 'minimal' %}
-			<ul class="list-unstyled footer-links">
+			<ul class="list-unstyled site-footer__footer-links">
 				{% for primary in footer_primary_menu %}
 					<li>
 						<a href="{{ primary.url }}"
@@ -13,9 +13,7 @@
 						</a>
 					</li>
 				{% endfor %}
-			</ul>
-
-			<ul class="list-unstyled footer-links-secondary">
+				
 				{% for secondary in footer_secondary_menu %}
 					<li>
 						<a href="{{ secondary.url }}"
@@ -28,14 +26,17 @@
 				{% endfor %}
 			</ul>
 		{% endif %}
+	</div>
 
-		<p class="copyright-text col-md-8" role="text">
-			{{ copyright_text_line1|e('wp_kses_post')|raw }}
-		</p>
-
-		<p class="gp-year" role="text">
-			{{ 'creative-commons'|svgicon }}
-			{{ copyright_text_line2|e('wp_kses_post')|raw }} {{"now"|date('Y')}}
-		</p>
+	<div class="site-footer__copyright">
+		<div class="container site-footer__copyright-wrapper">
+			<span class="site-footer__copyright-text" role="text">
+				{{ 'creative-commons'|svgicon }}
+				{{ copyright_text_line2|e('wp_kses_post')|raw }} {{"now"|date('Y')}}
+			</span>
+			<span class="site-footer__copyright-text" role="text">
+				{{ copyright_text_line1|e('wp_kses_post')|raw }}
+			</span>
+		</div>
 	</div>
 </footer>
