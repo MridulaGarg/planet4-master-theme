@@ -1,33 +1,65 @@
-.footer-social-media {
-  _-- {
-    color: $grey-20;
+.site-footer__social-media {
+  text-align: left;
+  margin-bottom: 24px;
+
+  @include medium-and-up {
+    margin-bottom: 0;
   }
-  font-size: $font-size-xl;
-  margin: auto;
-  text-align: center;
-  width: max-content;
-  margin-bottom: 32px;
-  padding: 0;
+}
+
+.site-footer__social-media-title {
+  display: none;
+
+  @include large-and-up {
+    margin-bottom: 24px;
+    display: block;
+    line-height: 1;
+  }
+}
+
+.site-footer__social-media-list {
+  _-- {
+    color: $white;
+  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-bottom: 9px;
+  border-bottom: 1px solid white;
+
+  @supports (justify-content: center) {
+    & {
+      justify-content: center;
+    }
+  }
 
   .icon {
-    width: 2rem;
-    height: 2rem;
+    width: 24px;
+    height: 24px;
+    margin-bottom: 16px;
   }
 
-  @include small-and-up {
-    font-size: $font-size-xxxl;
+  &--justify-space-between {
+    @supports (justify-content: space-between) {
+      & {
+        justify-content: space-between;
+      }
+    }
   }
 
-  @supports (justify-content: space-between) {
-    & {
-      display: flex;
-      justify-content: space-between;
+  @include large-and-up {
+    border-bottom: none;
+    flex-wrap: nowrap;
+
+    @supports (justify-content: flex-start) {
+      & {
+        justify-content: flex-start;
+      }
     }
   }
 
   li {
     display: inline-block;
-    font-size: $font-size-xl;
 
     &:not(:last-child) {
       margin-inline-end: 16px;
@@ -35,7 +67,7 @@
   }
 
   a {
-    --footer-social-media--link-- {
+    --footer--social-media--link-- {
       transition: color 100ms linear;
 
       &:hover {
@@ -45,10 +77,31 @@
   }
 }
 
-.site-footer--minimal .footer-social-media {
-  margin: 0 auto $space-md auto;
+.site-footer__social-media--minimal {
+  width: 100%;
 
-  .list-unstyled {
-    width: 200px;
+  .site-footer__social-media {
+    &-title {
+      display: none;
+    }
+
+    &-list {
+      border: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      @supports (justify-content: center) {
+        & {
+          justify-content: center;
+        }
+      }
+
+      .icon {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include medium-and-up {
+    margin-bottom: 24px;
   }
 }
