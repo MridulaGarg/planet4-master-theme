@@ -278,7 +278,9 @@ $navbar-default-height: 60px;
     position: absolute;
     top: 0;
     left: 0;
-    background: $dark-blue url("../../images/dropdown-gradient.svg") no-repeat;
+    _-- {
+      background: $dark-blue url("../../images/dropdown-gradient.svg") no-repeat;
+    }
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 2;
@@ -315,7 +317,9 @@ $navbar-default-height: 60px;
       top: 0;
       bottom: 0;
       width: 8px;
-      background: transparentize($grey-80, 0.9);
+      _-- {
+        background: transparentize($grey-80, 0.9);
+      }
       z-index: 0;
     }
 
@@ -338,7 +342,9 @@ $navbar-default-height: 60px;
         height: 1.75em;
         width: 50px;
         display: inline-block;
-        background: url("../../images/country-icon.svg") center center no-repeat;
+        _-- {
+          background: url("../../images/country-icon.svg") center center no-repeat;
+        }
         border-right: 1px solid transparentize($white, 0.9);
         background-size: contain;
 
@@ -387,7 +393,9 @@ $navbar-default-height: 60px;
       position: absolute;
       top: 0;
       bottom: 0;
-      background: $white;
+      _-- {
+        background: $white;
+      }
       width: 8px;
       margin-left: -50px;
       z-index: 2;
@@ -456,7 +464,9 @@ $navbar-default-height: 60px;
   width: 300px;
   padding: 11px;
   max-width: 80%;
-  background: transparentize($dark-blue, 0.2);
+  _-- {
+    background: transparentize($dark-blue, 0.2);
+  }
 
   html[dir="rtl"] & {
     right: auto;
