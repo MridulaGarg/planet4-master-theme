@@ -535,15 +535,14 @@ class PostCampaign {
 	private static function migrate_old_vars( array $css_vars ): array {
 		$mappings = [
 			'footer_links_color'      => [
-				'footer-menu--color',
-				'footer--links--hover--color',
-				'footer-social-media--color',
-				'footer-social-media--hover--color',
-				'footer-menu-secondary--color',
-				'footer--copyright--color',
-				'footer--copyright--link--color',
-				'footer--copyright--year--color',
-				'site-footer--minimal--icon--fill',
+				'--site-footer--color',
+				'--site-footer--icon--color',
+				'--site-footer--icon--hover--color',
+				'--site-footer--link--color',
+				'--site-footer--link--hover--color',
+				'--site-footer--copyright--text--color',
+				'--site-footer--copyright--text--link--color',
+				'--site-footer--copyright--text--link--hover--color',
 			],
 			'campaign_header_primary' => [ 'headings--font-family' ],
 			'campaign_body_font'      => [ 'body--font-family' ],
@@ -598,22 +597,27 @@ class PostCampaign {
 
 		if ( 'white' === $footer_theme ) {
 			$css_vars['footer_links_color']   = $css_vars['footer_links_color'] ? $css_vars['footer_links_color'] : $default_footer_links_color;
-			$css_vars['--footer--background'] = '#FFFFFF';
+			$css_vars['--site-footer--background'] = '#FFFFFF';
+			$css_vars['--site-footer--copyright--background'] = '#FFFFFF';
 		} elseif ( self::DEFAULT_NAVBAR_THEME === $css_vars['campaign_nav_type'] ) {
 			$css_vars['footer_links_color']   = null;
-			$css_vars['--footer--background'] = null;
+			$css_vars['--site-footer--background'] = null;
+			$css_vars['--site-footer--copyright--background'] = null;
+			$css_vars['--top--navigation--background'] = null;
 		} else {
 			switch ( ( $css_vars['campaign_logo_color'] ?? null ) ) {
 				case 'dark':
 					$css_vars['footer_links_color'] = '#1A1A1A';
 					break;
 				case 'green':
-					$css_vars['footer_links_color'] = '#62CE00';
+					$css_vars['footer_links_color'] = '#FFFFFF';
+					$css_vars['top-navigation--background'] = '#FFFFFF';
 					break;
 				default:
 					$css_vars['footer_links_color'] = '#FFFFFF';
 			}
-			$css_vars['--footer--background'] = $css_vars['campaign_nav_color'];
+			$css_vars['--site-footer--background'] = $css_vars['campaign_nav_color'];
+			$css_vars['--site-footer--copyright--background'] = $css_vars['campaign_nav_color'];
 		}
 
 		return $css_vars;
