@@ -1,0 +1,15 @@
+<div class="container">
+	<button
+		class="country-dropdown-toggle"
+		data-bs-toggle="open"
+		data-bs-target="#country-selector"
+		aria-expanded="false"
+		aria-label="{{ data_nav_bar.country_dropdown_toggle }}"
+		data-ga-category="Menu Navigation"
+		data-ga-action="Open Country Selector"
+		data-ga-label="{{ page_category }}">
+			<span class="visually-hidden">{{ __( 'Selected', 'planet4-master-theme' ) }}:</span> {{ website_navbar_title }}
+			<span class="visually-hidden">{{ __( 'Change Country', 'planet4-master-theme' ) }}</span>
+	</button>
+</div>
+<div id="country-list" class="country-list"></div>

@@ -1,71 +1,85 @@
 const { __ } = wp.i18n;
 
-export const setupCountrySelect = function($) {
+export const setupCountrySelect = function() {
   'use strict';
 
-  $('.country-select-dropdown').click(function(){
-    $(this).parent().toggleClass('active-li');
-    $('.country-select-box').toggle();
-  });
+  let data, json;
+  try {
+    data = document.getElementById('countries_script')?.innerText;
+    json = data ? JSON.parse(data) : null;
+    if (!json) return;
+  } catch (e) {
+    return;
+  }
 
-  $('.country-select-box .country-list li').click(function(){
-    $(this).parents('.country-select-box').find('li').removeClass('active');
-    $(this).addClass('active');
-  });
+  let countries_by_initial = json;
+  const international = countries_by_initial[0][0];
+  delete countries_by_initial[0];
+  //const countries_list = Object.keys(json).map(k => json[k]).flat();
 
-  $('.country-selectbox').click(function(){
-    $(this).toggleClass('active');
-    $(this).parent().find('.option-contry').toggleClass('active');
-  });
+  const list_by_initial = (by_initial) => {
+    console.log('by_initial', by_initial);
+    console.log('initial', Object.keys(by_initial));
 
-  // Get Countries List from <script> data block.
-  let $countries_script = $('#countries_script');
-  if ( $countries_script.length > 0 ) {
-    let countries_json = JSON.parse($countries_script.text());
-
-    // Build html for countries drop down list.
-    let countries_html = $(
-      '<div id="country-list" class="country-list">' +
-      '<a class="international" href=""></a>' +
-      '<ul class="countries_list" aria-label="' + __('Worldwide site list', 'planet4-master-theme') + '" role="list"></ul>' +
-      '</div>'
-    );
-
-    $.each(countries_json, function (index, element) {
-      if ('0' === index) {
-        $('.international', countries_html)
-          .attr('href', element[0].url)
-          .attr('data-ga-category', 'Country Selector')
-          .attr('data-ga-action', 'Greenpeace International')
-          .attr('data-ga-label', 'n/a')
-          .text(element[0].name);
-
-      } else {
-        let countries_sublist = $(
-          '<li>' +
-          '<h3 class="country-group-letter">' + index + '</h3>' +
-          '<ul class="countries_sublist" aria-label="' + __('Sites starting with the letter .' + index + '.', 'planet4-master-theme') + '" role="list"></ul>' +
-          '</li>'
-        );
-        $('.countries_list', countries_html).append(countries_sublist);
-
-        $.each(element, function (index, country) {
-          $.each(country.lang, function (index, lang) {
-            $('.countries_sublist', countries_sublist).append(
-              '<li>' +
-                '<a ' +
-                  'href="' + lang.url + '" ' +
-                  'data-ga-category="Country Selector" ' +
-                  'data-ga-action="' + country.name + ' | ' + lang.name + '" ' +
-                  'data-ga-label="n/a">' +
-                    country.name + ' | ' + lang.name +
-                '</a>' +
-              '</li>');
-          });
-        });
-      }
+    let entries = Object.keys(by_initial).map((initial) => {
+      console.log('initial', initial.toUpperCase());
+      let countries = by_initial[initial];
+      return `<li class="country-group-letter"><h3>${ initial.toUpperCase() }</h3>
+        <ul
+          aria-label="${ __('Sites starting with the letter .' + initial.toUpperCase() + '.', 'planet4-master-theme') }"
+        role="list">
+          ${ countries.map((country) => country_entry(country)).join('') }
+        </ul>
+      </li>`;
     });
 
-    $('#navbar-dropdown #country-select').append(countries_html);
+    return entries.join('');
   }
+
+  let country_entry = (country) => {
+    const main_lang = country.lang[0];
+
+    return `<li>
+      <a href="${ main_lang.url }"
+        hreflang="${ main_lang.locale[0] }"
+        data-ga-category="Country Selector"
+        data-ga-action="${ country.name + ' | ' + main_lang.name }"
+        data-ga-label="n/a"
+      >
+        ${ country.name }
+      </a>
+      ${ country.lang.length > 1 ? country_languages(country) : '' }
+    </li>`
+  };
+
+  let country_languages = (country) => {
+    const lang_count = country.lang.length;
+
+    const languages = country.lang.map((lang, k) => `<li>
+      <a href="${ lang.url }"
+        hreflang="${ lang.locale[0] }"
+        data-ga-category="Country Selector"
+        data-ga-action="${ country.name + ' | ' + lang.name }"
+        data-ga-label="n/a"
+      >
+        ${ lang.name }
+      </a>
+      ${ lang_count > 1 && (k+1) < lang_count ? '<span aria-hidden="true"> • </span>' : '' }
+    </li>`)
+
+    return `<ul class="lang-list">${ languages.join('') }</ul>`;
+  };
+
+  const content = list_by_initial(countries_by_initial);
+  const countries_html = `<div class="container">
+    <ul class="countries"
+        aria-label="${ __('Worldwide site list', 'planet4-master-theme') }"
+        role="list">
+        <li class="international"><a href="${ international.url }">${ international.name }</a></li>
+        ${ content }
+    </ul>
+  </div>`;
+
+  document.getElementById('country-list').innerHTML = countries_html;
+  return;
 };

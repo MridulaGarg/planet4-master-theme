@@ -1,4 +1,7 @@
 <footer id="footer" class="site-footer site-footer--{{ nav_type ?? 'default' }}">
+	<div id="country-selector" class="site-footer__country-selector">
+		{% include 'footer_country_selector.twig' %}
+	</div>
 	<div class="container site-footer__container">
 		{% include 'footer_social_media.twig' %}
 		<ul class="site-footer__footer-links list-unstyled">
@@ -13,7 +16,7 @@
 				</li>
 			{% endfor %}
 		</ul>
-		
+
 		<ul class="site-footer__footer-links list-unstyled">
 			{% for secondary in footer_secondary_menu %}
 				<li>

@@ -9,7 +9,6 @@
   z-index: 2;
   text-align: center;
   transition: margin 1s;
-  padding-top: $n25;
   clear: both;
 
   a _-- {
@@ -20,8 +19,122 @@
     line-height: 1;
   }
 
+  #country-selector {
+    font-size: $font-size-sm;
+    text-align: left;
+    width: 100%;
+
+    &.open {
+      .country-dropdown-toggle {
+        border-bottom: none;
+      }
+      .country-list {
+        display: block;
+      }
+    }
+
+    .country-dropdown-toggle {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      color: $white;
+      cursor: pointer;
+      padding: $space-md 0;
+      text-align: left;
+      white-space: nowrap;
+      width: 100%;
+
+      &::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background-image: url("../../assets/src/images/icons/angle-right.svg");
+        background-position: 50% 50%;
+        background-size: 1rem 1rem;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: inline-block;
+        margin-left: 10px;
+        transition: transform 300ms linear;
+      }
+    }
+
+    .country-list {
+      background-color: $x-dark-blue;
+      display: none;
+      font-weight: 500;
+      padding: 24px 0 $space-lg 0;
+    }
+
+    ul.countries {
+      column-count: 1;
+      list-style: none;
+      margin: 0;
+      padding-left: $space-lg;
+
+      @include medium-and-up {
+        column-count: 3;
+      }
+
+      .country-group-letter {
+        h3 {
+          _-- {
+            font-size: $font-size-sm;
+            font-weight: bold;
+            color: $grey-40;
+          }
+          position: absolute;
+          @include margin($left: -$space-lg);
+
+          html[dir="rtl"] & {
+            @include margin($left: 0, $right: -$space-lg);
+            text-transform: lowercase;
+          }
+
+          @include large-and-up {
+            margin-left: -#{$space-lg};
+
+            html[dir="rtl"] & {
+              margin-left: 0;
+              margin-right: -#{$space-lg};
+            }
+          }
+        }
+
+        & > ul {
+          padding-left: 0;
+        }
+
+        & > ul > li {
+          display: inline-block;
+          font-size: $font-size-sm;
+          padding-bottom: 8px;
+          width: 100%;
+        }
+      }
+
+      .international {
+        font-size: $font-size-sm;
+        margin: 0;
+        padding: 0 0 $space-lg 0;
+      }
+    }
+
+    ul.lang-list {
+      font-weight: 400;
+      line-height: $font-size-xxs;
+      list-style: none;
+      padding: $space-xxs 0 0 0;
+    }
+    ul.lang-list > li {
+      display: inline;
+      font-size: $font-size-xxs;
+    }
+  }
+
   &__container {
     padding-bottom: 0;
+    padding-top: $n40;
     display: flex;
     flex-direction: column;
 
