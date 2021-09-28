@@ -17,9 +17,6 @@
   }
 
   ul {
-    _-- {
-      color: $white;
-    }
     @include justifyContent(center);
     display: flex;
     flex-direction: row;
@@ -37,7 +34,7 @@
     }
 
     a {
-      --footer--social-media--link-- {
+      --site-footer--social-media--link-- {
         transition: color 100ms linear;
 
         &:hover {
