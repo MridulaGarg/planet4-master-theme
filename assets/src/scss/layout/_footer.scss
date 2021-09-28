@@ -1,5 +1,5 @@
 .site-footer {
-  --footer-- {
+  _-- {
     font-family: $roboto;
     background: $dark-blue;
     color: $white;
@@ -15,7 +15,7 @@
   a {
     transition: color 100ms linear;
 
-    --footer--link-- {
+    --site-footer--link-- {
       color: inherit;
 
       &:hover {
@@ -24,7 +24,7 @@
     }
   }
 
-  .icon --footer--icon-- {
+  .icon _-- {
     color: inherit;
 
     &:hover {
@@ -71,7 +71,7 @@
   }
 
   .copyright {
-    --footer--copyright-- {
+    --site-footer--copyright-- {
       background: $active-blue;
     }
 
@@ -80,10 +80,6 @@
 
     .icon {
       top: 0;
-
-      --footer--copyright--icon-- {
-        fill: $white;
-      }
     }
 
     .wrapper {
@@ -98,11 +94,11 @@
     }
 
     span {
-      --footer--copyright--text-- {
+      --site-footer--copyright--text-- {
         color: $grey-10;
       }
 
-      a --footer--copyright--text--link-- {
+      a --site-footer--copyright--text--link-- {
         color: $grey-10;
 
         &:hover {
