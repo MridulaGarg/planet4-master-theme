@@ -136,7 +136,7 @@
   &.minimal {
     .wrapper {
       @include large-and-up {
-        @include justifyContent(center);
+        justify-content: center;
         display: flex;
       }
     }

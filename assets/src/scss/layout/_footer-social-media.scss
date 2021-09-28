@@ -17,7 +17,7 @@
   }
 
   ul {
-    @include justifyContent(center);
+    justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -50,7 +50,7 @@
     }
 
     @include medium-and-up {
-      @include justifyContent(flex-start);
+      justify-content: flex-start;
     }
 
     @include large-and-up {
@@ -59,10 +59,10 @@
     }
 
     &.justify-space-between {
-      @include justifyContent(space-between);
+      justify-content: space-between;
 
       @include medium-and-up {
-        @include justifyContent(flex-start);
+        justify-content: flex-start;
       }
     }
   }
@@ -75,7 +75,7 @@
     }
 
     ul {
-      @include justifyContent(center);
+      justify-content: center;
       border: none;
       margin-bottom: 0;
       padding-bottom: 0;

@@ -205,11 +205,3 @@ $nested-comment-left-margin: 50px;
     }
   }
 }
-
-@mixin justifyContent($contentDistribution) {
-  @supports (justify-content: $contentDistribution) {
-    & {
-      justify-content: $contentDistribution;
-    }
-  }
-}
