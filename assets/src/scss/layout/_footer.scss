@@ -36,7 +36,7 @@
     line-height: 1;
   }
 
-  .site-footer__container {
+  .container {
     padding-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
     }
   }
 
-  .site-footer__footer-links {
+  .links {
     margin-bottom: 24px;
     width: 100%;
     text-align: left;
@@ -70,7 +70,7 @@
     }
   }
 
-  .site-footer__copyright {
+  .copyright {
     --footer--copyright-- {
       background: $active-blue;
     }
@@ -85,64 +85,64 @@
         fill: $white;
       }
     }
-  }
 
-  .site-footer__copyright-wrapper {
-    font-size: $font-size-xxs;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+    .wrapper {
+      font-size: $font-size-xxs;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
 
-    @include x-large-and-up {
-      flex-direction: inherit;
-    }
-  }
-
-  .site-footer__copyright-text {
-    --footer--copyright--text-- {
-      color: $grey-10;
+      @include x-large-and-up {
+        flex-direction: inherit;
+      }
     }
 
-    a --footer--copyright--text--link-- {
-      color: $grey-10;
-
-      &:hover {
+    span {
+      --footer--copyright--text-- {
         color: $grey-10;
       }
-    }
 
-    font-size: $font-size-xxs;
-    line-height: 1.4;
-    word-break: keep-all;
-    width: auto;
-    margin-bottom: 0;
-    margin-bottom: 12px;
+      a --footer--copyright--text--link-- {
+        color: $grey-10;
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    @include x-large-and-up {
-      margin-bottom: 0;
-
-      &:after {
-        content: "\007C";
-        display: inline-block;
-        margin: 0 14px;
+        &:hover {
+          color: $grey-10;
+        }
       }
 
-      &:last-of-type:after {
-        display: none;
+      font-size: $font-size-xxs;
+      line-height: 1.4;
+      word-break: keep-all;
+      width: auto;
+      margin-bottom: 0;
+      margin-bottom: 12px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @include x-large-and-up {
+        margin-bottom: 0;
+
+        &:after {
+          content: "\007C";
+          display: inline-block;
+          margin: 0 14px;
+        }
+
+        &:last-of-type:after {
+          display: none;
+        }
       }
     }
   }
-}
 
-.site-footer--minimal {
-  .site-footer__copyright-wrapper {
-    @include large-and-up {
-      display: flex;
-      justify-content: center;
+  &.minimal {
+    .wrapper {
+      @include large-and-up {
+        @include justifyContent(center);
+        display: flex;
+      }
     }
   }
 }
