@@ -1,8 +1,8 @@
 {% set total_social_icons = social_overrides is defined and social_overrides|length ? social_overrides|length : footer_social_menu|length %}
 
-<div class="site-footer__social-media site-footer__social-media--{{ nav_type }}">
-  <span class="site-footer__social-media-title">{{ __( 'Follow us', 'planet4-master-theme' ) }}</span>
-  <ul class="site-footer__social-media-list {{ total_social_icons >= 4 and total_social_icons <= 6 ? 'site-footer__social-media-list--justify-space-between' : '' }} list-unstyled">
+<div class="footer-social-media {{ nav_type }}">
+  <span>{{ __( 'Follow us', 'planet4-master-theme' ) }}</span>
+  <ul class="{{ total_social_icons >= 4 and total_social_icons <= 6 ? 'justify-space-between' : '' }} unstyled">
     {% if social_overrides is defined and social_overrides|length %}
       {% for social in social_overrides %}
         <li>
