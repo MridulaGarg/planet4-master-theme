@@ -17,13 +17,12 @@
   }
 
   ul {
-    justify-content: center;
+    justify-content: flex-start;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding-bottom: 9px;
-    padding-left: 0;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid transparentize($white, .5);
 
     li {
       display: inline-block;
@@ -49,21 +48,9 @@
       margin-bottom: 16px;
     }
 
-    @include medium-and-up {
-      justify-content: flex-start;
-    }
-
     @include large-and-up {
       border-bottom: none;
       flex-wrap: nowrap;
-    }
-
-    &.justify-space-between {
-      justify-content: space-between;
-
-      @include medium-and-up {
-        justify-content: flex-start;
-      }
     }
   }
 

@@ -79,7 +79,8 @@
     padding-bottom: 16px;
 
     .icon {
-      top: 0;
+      margin-right: 4px;
+      vertical-align: initial;
     }
 
     .wrapper {
@@ -106,7 +107,7 @@
         }
       }
 
-      font-size: $font-size-xxs;
+      font-size: $font-size-xxxs;
       line-height: 1.4;
       word-break: keep-all;
       width: auto;
