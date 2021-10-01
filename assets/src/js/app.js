@@ -1,5 +1,4 @@
 import { setupCookies } from './cookies';
-import { setupCountrySelect } from './country_select';
 import { setupHeader } from './header';
 import { setupLoadMore } from './load_more';
 import { setupPDFIcon } from './pdf_icon';
@@ -19,7 +18,6 @@ window.$ = $ || jQuery;
 
 jQuery(function($) {
   setupCookies($);
-  setupCountrySelect($);
   setupHeader($);
   setupLoadMore($);
   setupPDFIcon($);

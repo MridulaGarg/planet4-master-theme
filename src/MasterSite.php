@@ -549,6 +549,9 @@ class MasterSite extends TimberSite {
 		$context['footer_secondary_menu'] = wp_get_nav_menu_items( 'Footer Secondary' );
 		$context['p4_comments_depth']     = get_option( 'thread_comments_depth' ) ?? 1; // Default depth level set to 1 if not selected from admin.
 
+		$context['countries_by_initials'] = json_decode(file_get_contents(
+			get_template_directory() . '/templates/countries.json'
+		), \JSON_OBJECT_AS_ARRAY);
 		// HubSpot.
 		$context['hubspot_active'] = is_plugin_active( 'leadin/leadin.php' );
 

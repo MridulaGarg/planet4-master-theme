@@ -77,27 +77,19 @@
       }
 
       .country-group-letter {
-        h3 {
+        .initial {
           _-- {
             font-size: $font-size-sm;
-            font-weight: bold;
+            font-weight: 700;
             color: $grey-40;
           }
           position: absolute;
-          @include margin($left: -$space-lg);
+          margin-left: -#{$space-lg};
 
           html[dir="rtl"] & {
-            @include margin($left: 0, $right: -$space-lg);
+            margin-left: 0;
+            margin-right: -#{$space-lg};
             text-transform: lowercase;
-          }
-
-          @include large-and-up {
-            margin-left: -#{$space-lg};
-
-            html[dir="rtl"] & {
-              margin-left: 0;
-              margin-right: -#{$space-lg};
-            }
           }
         }
 
