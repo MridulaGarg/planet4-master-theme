@@ -491,7 +491,13 @@ class MasterSite extends TimberSite {
 		if ( function_exists( 'icl_get_languages' ) ) {
 			$context['languages'] = count( icl_get_languages() );
 		}
-		$context['navbar_menu']  = new TimberMenu( 'navigation-bar-menu' );
+
+		$menu_items                   = (new TimberMenu( 'navigation-bar-menu' ))->get_items();
+		$context['navbar_languages']  = array_filter($menu_items, function ($item) {
+			return in_array('wpml-ls-item', $item->classes ?? []);
+		});
+		$context['navbar_menu_items'] = array_diff($menu_items, $context['navbar_languages']);
+
 		$context['site']         = $this;
 		$context['current_url']  = home_url( $wp->request );
 		$context['sort_options'] = $this->sort_options;

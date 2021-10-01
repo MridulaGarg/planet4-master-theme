@@ -19,60 +19,24 @@
 			</span>
 		</button>
 		<ul id="navbar-dropdown" class="navbar-dropdown list-unstyled">
-			<li class="nav-item" id="country-select">
-				<button class="close-navbar-dropdown"
-					data-ga-category="Menu Navigation"
-					data-ga-action="Close Menu"
-					data-ga-label="{{ page_category }}">
-						<span
-							class="visually-hidden"
-							data-ga-category="Menu Navigation"
-							data-ga-action="Close Menu"
-							data-ga-label="{{ page_category }}">
-								{{ __( 'Close Menu', 'planet4-master-theme' ) }}
-						</span>
-				</button>
-				<button
-					class="country-dropdown-toggle"
-					data-bs-toggle="open"
-					data-bs-target="#country-list"
-					aria-expanded="false"
-					aria-label="{{ data_nav_bar.country_dropdown_toggle }}"
-					data-ga-category="Menu Navigation"
-					data-ga-action="Open Country Selector"
-					data-ga-label="{{ page_category }}">
-						<span class="visually-hidden">{{ __( 'Selected', 'planet4-master-theme' ) }}:</span> {{ website_navbar_title }}
-						<span class="visually-hidden">{{ __( 'Change Country', 'planet4-master-theme' ) }}</span>
-				</button>
-			</li>
-			{% for key,item in navbar_menu.get_items %}
-				{% if 'wpml-ls-item' in item.class %}
-					{% if key == 0 %}
-						<li class="nav-item {{ item.class }}">
+			{% for key,item in navbar_menu_items %}
+				<li class="nav-item {{ item.class }} {{ item == item.current ? 'active' : '' }}">
+					{% if fn('get_post_meta', item.ID, '_menu_item_object_id', true ) == act_page_id %}
+						{% set link_ga_action = 'Act' %}
+					{% elseif fn('get_post_meta', item.ID, '_menu_item_object_id', true ) == explore_page_id %}
+						{% set link_ga_action = 'Explore' %}
+					{% else %}
+						{% set link_ga_action = item.title %}
 					{% endif %}
-						<a class="nav-link" href="{{ item.get_link }}">{{ item.title|striptags|trim|slice(0, 2) }}</a>
-					{% if key == (languages - 1) %}
-						</li>
-					{% endif %}
-				{% else %}
-					<li class="nav-item {{ item.class }} {{ item == item.current ? 'active' : '' }}">
-						{% if fn('get_post_meta', item.ID, '_menu_item_object_id', true ) == act_page_id %}
-							{% set link_ga_action = 'Act' %}
-						{% elseif fn('get_post_meta', item.ID, '_menu_item_object_id', true ) == explore_page_id %}
-							{% set link_ga_action = 'Explore' %}
-						{% else %}
-							{% set link_ga_action = item.title %}
-						{% endif %}
-						<a
-							class="nav-link"
-							href="{{ item.get_link }}"
-							data-ga-category="Menu Navigation"
-							data-ga-action="{{ link_ga_action }}"
-							data-ga-label="{{ page_category }}">
-								{{ item.title }}
-						</a>
-					</li>
-				{% endif %}
+					<a
+						class="nav-link"
+						href="{{ item.get_link }}"
+						data-ga-category="Menu Navigation"
+						data-ga-action="{{ link_ga_action }}"
+						data-ga-label="{{ page_category }}">
+							{{ item.title }}
+					</a>
+				</li>
 			{% endfor %}
 			<li class="nav-item donate-nav-item">
 				<a
@@ -119,5 +83,18 @@
 				</span>
 			</button>
 		</form>
+		{% if navbar_languages is not empty %}
+		<ul id="navbar-languages" class="navbar-languages list-unstyled">
+			{% for key,item in navbar_languages %}
+				{% if key == 0 %}
+					<li class="nav-item {{ item.class }}">
+				{% endif %}
+					<a class="nav-link" href="{{ item.get_link }}">{{ item.title|striptags|trim|slice(0, 2) }}</a>
+				{% if key == (languages - 1) %}
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+		{% endif %}
 	</nav>
 {% endblock %}
