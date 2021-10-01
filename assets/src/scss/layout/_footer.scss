@@ -13,9 +13,7 @@
   line-height: 0;
 
   a {
-    transition: color 100ms linear;
-
-    --site-footer--link-- {
+    _-- {
       color: inherit;
 
       &:hover {
@@ -94,17 +92,17 @@
       }
     }
 
+    a _-- {
+      color: $grey-10;
+
+      &:hover {
+        color: $grey-10;
+      }
+    }
+
     span {
       --site-footer--copyright--text-- {
         color: $grey-10;
-      }
-
-      a --site-footer--copyright--text--link-- {
-        color: $grey-10;
-
-        &:hover {
-          color: $grey-10;
-        }
       }
 
       font-size: $font-size-xxxs;

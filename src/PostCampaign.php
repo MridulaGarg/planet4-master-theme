@@ -536,13 +536,13 @@ class PostCampaign {
 		$mappings = [
 			'footer_links_color'      => [
 				'--site-footer--color',
+				'--site-footer--a--color',
+				'--site-footer--a--hover--color',
 				'--site-footer--icon--color',
 				'--site-footer--icon--hover--color',
-				'--site-footer--link--color',
-				'--site-footer--link--hover--color',
 				'--site-footer--copyright--text--color',
-				'--site-footer--copyright--text--link--color',
-				'--site-footer--copyright--text--link--hover--color',
+				'--site-footer--copyright--a--color',
+				'--site-footer--copyright--a--hover--color',
 			],
 			'campaign_header_primary' => [ 'headings--font-family' ],
 			'campaign_body_font'      => [ 'body--font-family' ],
