@@ -24,6 +24,7 @@ $post            = Timber::query_post( false, Post::class ); // phpcs:ignore Wor
 $context['post'] = $post;
 
 // Strip Take Action Boxout block from the post content to add outside the normal block container.
+
 if ( false !== strpos( $post->post_content, '<!-- wp:planet4-blocks/take-action-boxout' ) ) {
 
 	$take_action_boxout_block_start  = strpos( $post->post_content, '<!-- wp:planet4-blocks/take-action-boxout' );
@@ -90,7 +91,7 @@ if ( 'yes' === $post->include_articles ) {
 
 // Build the shortcode for take action boxout block
 // Break the content to retrieve first 2 paragraphs and split the content if the take action page has been defined.
-if ( isset( $take_action_boxout_block ) ) {
+if ( isset( $take_action_boxout_block ) && ! empty( $take_action_boxout_block ) ) {
 	$post->take_action_boxout = $take_action_boxout_block;
 } elseif ( ! empty( $take_action_page ) ) {
 	$post->take_action_page = $take_action_page;
